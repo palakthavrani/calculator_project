@@ -1,29 +1,31 @@
-// Task add karne ka function
-function addTask() {
+// Get display
+let display = document.getElementById("display");
 
-    let input = document.getElementById("taskInput");
-    let task = input.value;
+// Add value to display
+function appendValue(value) {
+    display.value += value;
+}
 
-    // agar input empty hai
-    if (task === "") {
-        alert("Please enter a task");
-        return;
+// Clear display
+function clearDisplay() {
+    display.value = "";
+}
+
+// Delete last character
+function deleteLast() {
+    display.value = display.value.slice(0, -1);
+}
+
+// Calculate result
+function calculate() {
+    try {
+        // Evaluate expression
+        let result = eval(display.value);
+
+        // Show result
+        display.value = result;
+
+    } catch {
+        display.value = "Error";
     }
-
-    let li = document.createElement("li");
-    li.innerText = task;
-
-    // delete button
-    let btn = document.createElement("button");
-    btn.innerText = "Delete";
-
-    btn.onclick = function () {
-        li.remove();
-    };
-
-    li.appendChild(btn);
-
-    document.getElementById("taskList").appendChild(li);
-
-    input.value = "";
 }
